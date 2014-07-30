@@ -1,0 +1,43 @@
+<div >
+<div class="panel panel-default">
+
+<div class="panel-body">
+<div id="blog-header">
+<h3>{{title}}</h3>
+
+<select style="float:right; width:100px;" class="form-control" ng-model="limit">
+<option value="5" selected=true>5 Items</option>
+<option value="10">10 Items</option>
+<option value="15">15 Items</option>
+<option value="20">20 Items</option>
+<option value="25">25 Items</option>
+<option value="30">30 Items</option>
+</select>
+
+<hr/>
+</div>
+<div ng-repeat="movie in movies">
+<div class="row">
+	<div class="col-md-3">
+		<a href="#" class="thumbnail"><img  style="width:100%" src="{{movie.posters.profile}}" width="50%"/></a>
+	</div>
+	<div class="col-md-9">
+		<h3 style="text-transform:uppercase;">{{movie.title}}  ({{movie.year}})</h3>
+		<p style="text-align:justify; font-size:15px;">{{movie.synopsis.substring(0,300)}}...</p>
+		<a type="button" class="btn btn-default navbar-btn" href="#/movie/{{movie.id}}">See More</a><br/>
+		<span style="font-weight:bold;">RELEASE DATE : </span><span>{{movie.release_dates.theater}}</span><br/>
+		<span style="font-weight:bold;">CAST : | </span><span ng-repeat="names in movie.abridged_cast">{{names.name}} | </span>
+	</div>
+</div>
+<hr/>
+</div>
+</div>
+</div>
+<div style="width:100%" align=center>
+<ul class="pagination">
+  <li class="{{paginationParams[0]}}"><a href="{{caller}}/{{currpage-1}}">&laquo;</a></li>
+  <li  ng-repeat="item in pagination" class="{{paginationParams[item]}}"><a href="{{caller}}/{{item}}" >{{item}}</a></li>
+   <li class="{{paginationParams[paginationParams.length-1]}}"><a href="{{caller}}/{{currpage+1}}">&raquo;</a></li>
+</ul>
+</div>
+</div>

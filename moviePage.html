@@ -1,0 +1,28 @@
+<div class="panel panel-default">
+
+<div class="panel-body">
+<h1 style="text-transform:uppercase;">{{movie.title}}  ({{movie.year}})</h1>
+<hr/>
+<div align="center">
+<a href="{{movie.posters.detailed}}" style="width:300px;" class="thumbnail"><img  style="width:100%;" src="{{movie.posters.original}}"/></a>
+</div>
+
+<h3>SUMMARY</h3>
+<p style="font-size:15px; text-align:justify;">{{movie.synopsis}}</p>
+
+<h3>RELEASE DATE</h3>
+<p class="lead">{{movie.release_dates.theater}}</p>
+
+<h3>CASTING</h3>
+<table class="table" >
+<thead>
+<tr><td>NAME</td><td >CHARACTER</td></tr>
+</thead>
+<tbody>
+<tr ng-repeat="cast in movie.abridged_cast"><td>{{cast.name}}</td><td><span ng-repeat="char in cast.characters">{{char}} </span></td></tr>
+</tbody>
+
+</table>
+
+</div>
+</div>
