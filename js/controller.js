@@ -6,7 +6,7 @@ $scope.title="UPCOMING MOVIES";
 $scope.name="OK DONE!!";
 $scope.limit=5;
 $scope.currpage=parseInt($routeParams.pageID);
-$scope.caller="#/main";
+$scope.caller="#/upcoming";
 $http.jsonp('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming.json?apikey=zryzu3y2kvztg5435v54wfq7&callback=JSON_CALLBACK&page_limit='+$scope.limit+'&page='+$scope.currpage)
 	.success(function(data){
 		console.log("Success");
@@ -18,10 +18,11 @@ $http.jsonp('http://api.rottentomatoes.com/api/public/v1.0/lists/movies/upcoming
 		var n=Math.ceil(data.total/$scope.limit);
 		$scope.paginationParams=createParam($scope.total,$scope.currpage,n);
 		var arr=new Array();
-		for(i=0;i<$scope.paginationParams.length;i++)
+		for(i=0;i<$scope.paginationParams.length-2;i++)
 			arr.push(i+1);
 		$scope.pagination=arr;
 		$scope.paginationParams=createParam($scope.total,$scope.currpage,n);
+		console.log($scope.paginationParams);
 		function createParam(t,p,l)
 		{
 			var ar=new Array(l+2);
@@ -90,7 +91,7 @@ $http.jsonp(url)
 		var n=Math.ceil(data.total/$scope.limit);
 		$scope.paginationParams=createParam($scope.total,$scope.currpage,n);
 		var arr=new Array();
-		for(i=0;i<$scope.paginationParams.length;i++)
+		for(i=0;i<$scope.paginationParams.length-2;i++)
 			arr.push(i+1);
 		$scope.pagination=arr;
 		console.log($scope.paginationParams);
@@ -132,7 +133,7 @@ $scope.title="NEW RELEASE MOVIES";
 $scope.limit=5;
 $scope.currpage=parseInt($routeParams.pageID);
 $scope.query=$routeParams.country;
-$scope.caller="#/newRelease";
+$scope.caller="#/newRelease/"+$scope.query;
 console.log($scope.query+" "+$scope.currpage);
 var url='http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=zryzu3y2kvztg5435v54wfq7&callback=JSON_CALLBACK&page_limit='+$scope.limit+'&q='+$scope.query+'&page='+$scope.currpage;
 console.log(url);
@@ -147,7 +148,7 @@ $http.jsonp(url)
 		var n=Math.ceil(data.total/$scope.limit);
 		$scope.paginationParams=createParam($scope.total,$scope.currpage,n);
 		var arr=new Array();
-		for(i=0;i<$scope.paginationParams.length;i++)
+		for(i=0;i<$scope.paginationParams.length-2;i++)
 			arr.push(i+1);
 		$scope.pagination=arr;
 		console.log($scope.paginationParams);
